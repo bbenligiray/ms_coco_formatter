@@ -1,12 +1,13 @@
 import os
-import shutil
-import zipfile
 import h5py
+import zipfile
+import shutil
 
 import numpy as np
 from PIL import Image
 
-from pycocotools.coco import COCO
+from pycocotools.coco import COCO 
+from calculate_mean import calculate_mean
 
 
 def main():
@@ -24,7 +25,7 @@ def main():
 					'http://msvocds.blob.core.windows.net/annotations-1-0-3/captions_train-val2014.zip',
 					'http://msvocds.blob.core.windows.net/annotations-1-0-4/image_info_test2014.zip',
 					'http://msvocds.blob.core.windows.net/annotations-1-0-4/image_info_test2015.zip']
-
+	
 	for dataset_link in dataset_links:
 		file_name = dataset_link.split('/')[-1]
 		# download the zip file if it is not there
@@ -94,11 +95,11 @@ def main():
 			name_h[ind] = coco_img[0]['file_name']
 			shape_h[ind] = np_image.shape
 			label_h[ind] = labels[ind]
-
 	f.close()
-	
 	for dir_name in ['train2014', 'val2014', 'test2014', 'test2015', 'annotations']:
 		shutil.rmtree(dir_name)
+
+	calculate_mean()
 
 	# show random images to test
 	f = h5py.File('ms_coco.h5', 'r')
