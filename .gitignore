@@ -1,0 +1,8 @@
+train2014/
+val2014/
+test2014/
+test2015/
+annotations/
+
+*.zip
+*.h5
