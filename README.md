@@ -1,6 +1,6 @@
 # MS COCO Formatter
 
-A tool to download and format MS COCO dataset
+A tool to download and format MS COCO dataset for multilabel image classification
 
 It outputs a .h5 file that contains the following:
 
